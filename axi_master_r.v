@@ -55,6 +55,8 @@ module axi_master_r #(
     reg [RAM_ADDR_WIDTH-1:0]            mem_ptr_r;        //dia chi de lua vao ram noi
     reg [7:0]                           burst_cnt_r;
     reg [2:0]                           state_r, next_state_r;
+	 
+	 reg [ID_WIDTH-1:0]           		 reg_m_ARID_o;    //gia tri arid
 
     wire [7:0]                          beat_size_r = (8'd1 << set_ARSIZE_i);
 
@@ -114,7 +116,9 @@ module axi_master_r #(
 
             RDATA:
                 if (m_RVALID_i && m_RREADY_o && m_RLAST_i)   //da ghi xong RLAST = 1
+					 begin
                     next_state_r = IDLE;
+					 end
                 else
                     if (!r_ram_access)
                         next_state_r = WAIT;   //dg ghi thi bi mat quyen truy cap RAM
@@ -179,6 +183,16 @@ module axi_master_r #(
             endcase
         end
     end
+	 	 //================ ARID =================//
+	 always @(posedge ACLK_i or negedge ARESETn_i)
+		begin
+			 if(!ARESETn_i)
+				  reg_m_ARID_o <= 0;
+
+			 else if(ReadTrans_EN_i)
+				  reg_m_ARID_o <= reg_m_ARID_o + 1'b1;
+		end
+
 
     //================ OUTPUT =================//
 
@@ -199,7 +213,7 @@ module axi_master_r #(
     assign m_ARBURST_o = reg_set_ARBURST_i;
     assign m_ARLEN_o   = reg_set_ARLEN_i;
     assign m_ARSIZE_o  = reg_set_ARSIZE_i;
-    assign m_ARID_o    = 0;
+    assign m_ARID_o    = reg_m_ARID_o;
 
     // READ DATA
     assign m_RREADY_o = (state_r == RDATA);

@@ -49,13 +49,14 @@ module axi_slave_w #(
 
     reg [RAM_ADDR_WIDTH-1:0]            mem_ptr_w;
     reg [7:0]                           burst_cnt_w;
-    reg [ID_WIDTH-1:0]                  saved_id_w;
+    
     reg [2:0]                           state_w, next_state_w;
 
     reg  [ADDR_WIDTH-1:0]               reg_s_AWADDR_i;
     reg  [1:0]                          reg_s_AWBURST_i;
     reg  [7:0]                          reg_s_AWLEN_i;
     reg  [2:0]                          reg_s_AWSIZE_i;
+	 reg [ID_WIDTH-1:0]                  reg_s_AWID_i;
 
     //BURST W signed
     wire [7:0]                          beat_size_w   = (8'd1 << reg_s_AWSIZE_i);      // số byte mỗi beat
@@ -151,7 +152,7 @@ module axi_slave_w #(
                     if (s_AWVALID_i && s_AWREADY_o) begin
                         mem_ptr_w      <= s_AWADDR_i;
                         burst_cnt_w <= 0;
-                        saved_id_w  <= s_AWID_i;
+                        reg_s_AWID_i  <= s_AWID_i;
 
                         reg_s_AWADDR_i  <= s_AWADDR_i;
                         reg_s_AWBURST_i <= s_AWBURST_i;
@@ -218,6 +219,6 @@ module axi_slave_w #(
     // WRITE RESP
     assign s_BVALID_o = (state_w == BRESP);
     assign s_BRESP_o  = 2'b00;
-    assign s_BID_o    = saved_id_w;
+    assign s_BID_o    = reg_s_AWID_i;
 
 endmodule

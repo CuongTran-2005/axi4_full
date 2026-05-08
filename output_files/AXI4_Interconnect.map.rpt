@@ -1,5 +1,5 @@
 Analysis & Synthesis report for AXI4_Interconnect
-Sat May 09 00:04:36 2026
+Sat May 09 03:56:04 2026
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -49,15 +49,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat May 09 00:04:36 2026           ;
+; Analysis & Synthesis Status        ; Successful - Sat May 09 03:56:04 2026           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; AXI4_Interconnect                               ;
 ; Top-level Entity Name              ; axi_slave_r                                     ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 112                                             ;
+; Total logic elements               ; 116                                             ;
 ;     Total combinational functions  ; 92                                              ;
-;     Dedicated logic registers      ; 38                                              ;
-; Total registers                    ; 38                                              ;
+;     Dedicated logic registers      ; 42                                              ;
+; Total registers                    ; 42                                              ;
 ; Total pins                         ; 173                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -183,7 +183,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+--------+
 ; Resource                                    ; Usage  ;
 +---------------------------------------------+--------+
-; Estimated Total logic elements              ; 112    ;
+; Estimated Total logic elements              ; 116    ;
 ;                                             ;        ;
 ; Total combinational functions               ; 92     ;
 ; Logic element usage by number of LUT inputs ;        ;
@@ -195,16 +195,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- normal mode                          ; 61     ;
 ;     -- arithmetic mode                      ; 31     ;
 ;                                             ;        ;
-; Total registers                             ; 38     ;
-;     -- Dedicated logic registers            ; 38     ;
+; Total registers                             ; 42     ;
+;     -- Dedicated logic registers            ; 42     ;
 ;     -- I/O registers                        ; 0      ;
 ;                                             ;        ;
 ; I/O pins                                    ; 173    ;
 ; Embedded Multiplier 9-bit elements          ; 1      ;
 ; Maximum fan-out node                        ; ACLK_i ;
-; Maximum fan-out                             ; 38     ;
-; Total fan-out                               ; 467    ;
-; Average fan-out                             ; 1.53   ;
+; Maximum fan-out                             ; 42     ;
+; Total fan-out                               ; 483    ;
+; Average fan-out                             ; 1.56   ;
 +---------------------------------------------+--------+
 
 
@@ -213,7 +213,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
 ; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                 ; Library Name ;
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
-; |axi_slave_r                    ; 92 (92)           ; 38 (38)      ; 0           ; 1            ; 1       ; 0         ; 173  ; 0            ; |axi_slave_r                                        ; work         ;
+; |axi_slave_r                    ; 92 (92)           ; 42 (42)      ; 0           ; 1            ; 1       ; 0         ; 173  ; 0            ; |axi_slave_r                                        ; work         ;
 ;    |lpm_mult:Mult0|             ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |axi_slave_r|lpm_mult:Mult0                         ; work         ;
 ;       |mult_k5t:auto_generated| ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |axi_slave_r|lpm_mult:Mult0|mult_k5t:auto_generated ; work         ;
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
@@ -265,12 +265,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 38    ;
+; Total registers                              ; 42    ;
 ; Number of registers using Synchronous Clear  ; 8     ;
 ; Number of registers using Synchronous Load   ; 7     ;
 ; Number of registers using Asynchronous Clear ; 18    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 35    ;
+; Number of registers using Clock Enable       ; 39    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -367,7 +367,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat May 09 00:04:34 2026
+    Info: Processing started: Sat May 09 03:56:01 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AXI4_Interconnect -c AXI4_Interconnect
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file axi_ram_mux.v
@@ -457,18 +457,15 @@ Info (12021): Found 1 design units, including 1 entities, in source file axi_mas
     Info (12023): Found entity 1: axi_master_control
 Info (12021): Found 1 design units, including 1 entities, in source file ram_khai.v
     Info (12023): Found entity 1: axi_ram_khai
-Warning (10236): Verilog HDL Implicit Net warning at axi_master_w.v(187): created implicit net for "w_request"
 Info (12127): Elaborating entity "axi_slave_r" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(47): object "saved_id_r" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(65): object "bytes_per_beat" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(66): object "offset" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(144): truncated value with size 32 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(161): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(162): truncated value with size 32 to match size of target (7)
-Info (10264): Verilog HDL Case Statement information at axi_slave_r.v(140): all case item expressions in this case statement are onehot
-Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(193): truncated value with size 32 to match size of target (1)
+Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(66): object "bytes_per_beat" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(67): object "offset" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(145): truncated value with size 32 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(162): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(163): truncated value with size 32 to match size of target (7)
+Info (10264): Verilog HDL Case Statement information at axi_slave_r.v(141): all case item expressions in this case statement are onehot
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(194): truncated value with size 32 to match size of target (1)
 Warning (10034): Output port "ram_data_in" at axi_slave_r.v(16) has no driver
-Warning (10034): Output port "s_RID_o" at axi_slave_r.v(35) has no driver
 Warning (10034): Output port "s_RRESP_o" at axi_slave_r.v(37) has no driver
 Info (278001): Inferred 1 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0"
@@ -519,21 +516,13 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "ram_data_in[30]" is stuck at GND
     Warning (13410): Pin "ram_data_in[31]" is stuck at GND
     Warning (13410): Pin "ram_strobe[0]" is stuck at VCC
-    Warning (13410): Pin "s_RID_o[0]" is stuck at GND
-    Warning (13410): Pin "s_RID_o[1]" is stuck at GND
-    Warning (13410): Pin "s_RID_o[2]" is stuck at GND
-    Warning (13410): Pin "s_RID_o[3]" is stuck at GND
     Warning (13410): Pin "s_RRESP_o[0]" is stuck at GND
     Warning (13410): Pin "s_RRESP_o[1]" is stuck at GND
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file D:/DoAn_AXI4/AXI4_interconnect/output_files/AXI4_Interconnect.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 29 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "s_ARID_i[0]"
-    Warning (15610): No output dependent on input pin "s_ARID_i[1]"
-    Warning (15610): No output dependent on input pin "s_ARID_i[2]"
-    Warning (15610): No output dependent on input pin "s_ARID_i[3]"
+Warning (21074): Design contains 25 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "s_ARADDR_i[7]"
     Warning (15610): No output dependent on input pin "s_ARADDR_i[8]"
     Warning (15610): No output dependent on input pin "s_ARADDR_i[9]"
@@ -559,15 +548,15 @@ Warning (21074): Design contains 29 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "s_ARADDR_i[29]"
     Warning (15610): No output dependent on input pin "s_ARADDR_i[30]"
     Warning (15610): No output dependent on input pin "s_ARADDR_i[31]"
-Info (21057): Implemented 286 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 290 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 86 input pins
     Info (21059): Implemented 87 output pins
-    Info (21061): Implemented 112 logic cells
+    Info (21061): Implemented 116 logic cells
     Info (21062): Implemented 1 DSP elements
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 82 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 71 warnings
     Info: Peak virtual memory: 4633 megabytes
-    Info: Processing ended: Sat May 09 00:04:36 2026
-    Info: Elapsed time: 00:00:02
+    Info: Processing ended: Sat May 09 03:56:04 2026
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 
 
