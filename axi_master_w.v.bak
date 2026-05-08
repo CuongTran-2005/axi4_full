@@ -1,0 +1,57 @@
+module axi_master_w#(
+parameter ID_WIDTH = 4,
+    parameter ADDR_WIDTH = 32,    //toi da tuy vao so luong device va memory cua tung device
+    parameter DATA_WIDTH = 32     //toi da 1024
+)(
+input                       ACLK_i,
+    input                       ARESETn_i,
+	 
+//==================== CONTROL COMMAND ===================//
+
+    input                       WriteTrans_EN_i,	
+	 input  [4:0]                w_set_addr_memory,  // chon dia chi muon gui cho slave
+	 input  [ADDR_WIDTH-1:0]     set_AWADDR_i,
+    input  [1:0]                set_AWBURST_i,
+    input  [7:0]                set_AWLEN_i,
+    input  [2:0]                set_AWSIZE_i,
+//==================WRITE TO RAM  ==================//
+
+ output reg  [6:0] 					ram_address,
+ output reg [7:0] 					ram_data_in,
+ output  							ram_wren,
+ input    							ram_data_out,
+ //================ WRITE ADDRESS =================//
+    output 		                 m_AWVALID_o,
+    output [ID_WIDTH-1:0]       m_AWID_o,
+    output [ADDR_WIDTH-1:0]     m_AWADDR_o,
+    output [1:0]                m_AWBURST_o,
+    output [7:0]                m_AWLEN_o,
+    output [2:0]                m_AWSIZE_o,
+    input                       m_AWREADY_i,
+
+    //================ WRITE DATA ====================//
+    output                      m_WVALID_o,
+    output [DATA_WIDTH-1:0]     m_WDATA_o,
+    output                      m_WLAST_o,
+    input                       m_WREADY_i,
+
+    //================ WRITE RESP ====================//
+    input                       m_BVALID_i,
+    input  [ID_WIDTH-1:0]       m_BID_i,
+    input  [1:0]                m_BRESP_i,
+    output                      m_BREADY_o
+
+)
+
+//================ REG W =================//
+	  
+	  reg [4:0] mem_ptr_w;
+	  reg [7:0] burst_cnt_w;
+	  reg [2:0] state_w, next_state_w;
+	  
+	  wire [31:0] beat_size_w  = (1 << set_AWSIZE_i); 
+	  
+	  reg  [ADDR_WIDTH-1:0]     reg_set_AWADDR_i;
+	  reg  [1:0]                reg_set_AWBURST_i;
+     reg  [7:0]                reg_set_AWLEN_i;
+     reg  [2:0]                reg_set_AWSIZE_i;

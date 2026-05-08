@@ -1,0 +1,7 @@
+module axi_slave_w#(
+    parameter ID_WIDTH   = 4,
+    parameter ADDR_WIDTH = 32,
+    parameter DATA_WIDTH = 32
+)(
+
+);

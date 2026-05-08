@@ -1,0 +1,21 @@
+module axi_master_control#(
+parameter ID_WIDTH = 4,
+    parameter ADDR_WIDTH = 32,    //toi da tuy vao so luong device va memory cua tung device
+    parameter DATA_WIDTH = 32     //toi da 1024
+)(
+//CONTROL
+
+
+//RAM
+ output reg  [6:0] 					ram_address,
+ output reg [DATA_WIDTH:0] 		ram_data_in,
+ output  							ram_wren,
+ input    	[DATA_WIDTH-1:0]		ram_data_out,
+//RACCESS
+ output r_ram_acces,
+ input r_ram_busy,
+//WACCESS
+	output w_ram_acces,
+ input w_ram_busy
+
+)

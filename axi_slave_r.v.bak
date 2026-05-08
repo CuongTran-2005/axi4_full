@@ -1,0 +1,9 @@
+module axi_slave_r #(
+parameter ID_WIDTH = 4,
+    parameter ADDR_WIDTH = 32,    //toi da tuy vao so luong device va memory cua tung device
+    parameter DATA_WIDTH = 32     //toi da 1024
+)(
+
+
+
+)

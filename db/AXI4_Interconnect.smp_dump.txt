@@ -1,0 +1,8 @@
+
+State Machine - |axi_master_w|state_w
+Name state_w.WDATA state_w.AW state_w.WAIT state_w.IDLE state_w.BRESP 
+state_w.IDLE 0 0 0 0 0 
+state_w.WAIT 0 0 1 1 0 
+state_w.AW 0 1 0 1 0 
+state_w.WDATA 1 0 0 1 0 
+state_w.BRESP 0 0 0 1 1 
