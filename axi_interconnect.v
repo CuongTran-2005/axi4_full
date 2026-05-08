@@ -1,8 +1,8 @@
 module axi_interconnect 
 #(
     // Interconnect configuration
-    parameter                       MST_AMT             = 1,
-    parameter                       SLV_AMT             = 2,
+    parameter                       MST_AMT             = 4,
+    parameter                       SLV_AMT             = 4,
     parameter                       OUTSTANDING_AMT     = 8,
     parameter [0:(MST_AMT*32)-1]    MST_WEIGHT          = {32'd5, 32'd3, 32'd2, 32'd1},
     parameter                       MST_ID_W            = $clog2(MST_AMT),

@@ -41,16 +41,17 @@ module axi_slave_r #(
 
 
     //================ REG R=================//
-
+    
     reg [RAM_ADDR_WIDTH-1:0] 	mem_ptr_r;
     reg [7:0]            		burst_cnt_r;
-    reg [ID_WIDTH-1:0]  		saved_id_r;  //chua dung
+    
     reg [2:0]            		state_r, next_state_r;
 
     reg [ADDR_WIDTH-1:0] 		reg_s_ARADDR_i;
     reg [1:0]            		reg_s_ARBURST_i;
     reg [7:0]            		reg_s_ARLEN_i;
     reg [2:0]            		reg_s_ARSIZE_i;
+    reg [ID_WIDTH-1:0]  		 reg_s_ARID_i;  //chua dung
 
     //BURST R signed
     wire [7:0]             	beat_size_r   = (8'd1 << reg_s_ARSIZE_i);      // số byte mỗi beat
@@ -143,8 +144,8 @@ module axi_slave_r #(
                     if (s_ARVALID_i && s_ARREADY_o) begin
                         mem_ptr_r   <= s_ARADDR_i;
                         burst_cnt_r <= 0;
-                        saved_id_r  <= s_ARID_i;
-
+                        
+                        reg_s_ARID_i  <= s_ARID_i;
                         reg_s_ARADDR_i  <= s_ARADDR_i;
                         reg_s_ARBURST_i <= s_ARBURST_i;
                         reg_s_ARLEN_i   <= s_ARLEN_i;
@@ -202,6 +203,7 @@ module axi_slave_r #(
     // READ DATA
     assign s_RVALID_o = (state_r == RDATA);
     assign s_RDATA_o  = ram_data_out;
+    assign s_RID_o = reg_s_ARID_i;
 
 
 endmodule
