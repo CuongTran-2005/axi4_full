@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C35F672C6
-set_global_assignment -name TOP_LEVEL_ENTITY axi_interconnect_tb
+set_global_assignment -name TOP_LEVEL_ENTITY axi_slave_r
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:47:38  APRIL 01, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
@@ -97,6 +97,7 @@ set_global_assignment -name VERILOG_FILE axi_slave_r.v
 set_global_assignment -name VERILOG_FILE axi_slave_w.v
 set_global_assignment -name VERILOG_FILE axi_slave_control.v
 set_global_assignment -name VERILOG_FILE axi_master_control.v
+set_global_assignment -name VERILOG_FILE ram_khai.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

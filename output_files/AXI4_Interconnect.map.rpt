@@ -1,5 +1,5 @@
 Analysis & Synthesis report for AXI4_Interconnect
-Fri May 08 17:59:32 2026
+Sat May 09 00:04:36 2026
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,14 +13,17 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |axi_master_w|state_w
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: Top-level Entity: |axi_master_w
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
- 15. Analysis & Synthesis Suppressed Messages
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |axi_slave_r|state_r
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |axi_slave_r
+ 14. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
+ 15. lpm_mult Parameter Settings by Entity Instance
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
+ 18. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -46,19 +49,19 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri May 08 17:59:32 2026           ;
+; Analysis & Synthesis Status        ; Successful - Sat May 09 00:04:36 2026           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; AXI4_Interconnect                               ;
-; Top-level Entity Name              ; axi_master_w                                    ;
+; Top-level Entity Name              ; axi_slave_r                                     ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 93                                              ;
-;     Total combinational functions  ; 43                                              ;
-;     Dedicated logic registers      ; 68                                              ;
-; Total registers                    ; 68                                              ;
-; Total pins                         ; 226                                             ;
+; Total logic elements               ; 112                                             ;
+;     Total combinational functions  ; 92                                              ;
+;     Dedicated logic registers      ; 38                                              ;
+; Total registers                    ; 38                                              ;
+; Total pins                         ; 173                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
-; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 1                                               ;
 ; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
@@ -69,7 +72,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; EP2C35F672C6       ;                    ;
-; Top-level entity name                                                      ; axi_master_w       ; AXI4_Interconnect  ;
+; Top-level entity name                                                      ; axi_slave_r        ; AXI4_Interconnect  ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -159,13 +162,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                  ; Library ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
-; axi_master_w.v                   ; yes             ; User Verilog HDL File  ; D:/DoAn_AXI4/AXI4_interconnect/axi_master_w.v ;         ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                      ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
+; axi_slave_r.v                    ; yes             ; User Verilog HDL File        ; D:/DoAn_AXI4/AXI4_interconnect/axi_slave_r.v                      ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf    ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc  ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc    ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc    ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc    ;         ;
+; db/mult_k5t.tdf                  ; yes             ; Auto-Generated Megafunction  ; D:/DoAn_AXI4/AXI4_interconnect/db/mult_k5t.tdf                    ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------+
@@ -173,66 +183,81 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+--------+
 ; Resource                                    ; Usage  ;
 +---------------------------------------------+--------+
-; Estimated Total logic elements              ; 93     ;
+; Estimated Total logic elements              ; 112    ;
 ;                                             ;        ;
-; Total combinational functions               ; 43     ;
+; Total combinational functions               ; 92     ;
 ; Logic element usage by number of LUT inputs ;        ;
-;     -- 4 input functions                    ; 17     ;
-;     -- 3 input functions                    ; 12     ;
-;     -- <=2 input functions                  ; 14     ;
+;     -- 4 input functions                    ; 24     ;
+;     -- 3 input functions                    ; 28     ;
+;     -- <=2 input functions                  ; 40     ;
 ;                                             ;        ;
 ; Logic elements by mode                      ;        ;
-;     -- normal mode                          ; 32     ;
-;     -- arithmetic mode                      ; 11     ;
+;     -- normal mode                          ; 61     ;
+;     -- arithmetic mode                      ; 31     ;
 ;                                             ;        ;
-; Total registers                             ; 68     ;
-;     -- Dedicated logic registers            ; 68     ;
+; Total registers                             ; 38     ;
+;     -- Dedicated logic registers            ; 38     ;
 ;     -- I/O registers                        ; 0      ;
 ;                                             ;        ;
-; I/O pins                                    ; 226    ;
-; Embedded Multiplier 9-bit elements          ; 0      ;
+; I/O pins                                    ; 173    ;
+; Embedded Multiplier 9-bit elements          ; 1      ;
 ; Maximum fan-out node                        ; ACLK_i ;
-; Maximum fan-out                             ; 68     ;
-; Total fan-out                               ; 459    ;
-; Average fan-out                             ; 1.36   ;
+; Maximum fan-out                             ; 38     ;
+; Total fan-out                               ; 467    ;
+; Average fan-out                             ; 1.53   ;
 +---------------------------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |axi_master_w              ; 43 (43)           ; 68 (68)      ; 0           ; 0            ; 0       ; 0         ; 226  ; 0            ; |axi_master_w       ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                              ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
+; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                 ; Library Name ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
+; |axi_slave_r                    ; 92 (92)           ; 38 (38)      ; 0           ; 1            ; 1       ; 0         ; 173  ; 0            ; |axi_slave_r                                        ; work         ;
+;    |lpm_mult:Mult0|             ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |axi_slave_r|lpm_mult:Mult0                         ; work         ;
+;       |mult_k5t:auto_generated| ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |axi_slave_r|lpm_mult:Mult0|mult_k5t:auto_generated ; work         ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 1           ;
+; Simple Multipliers (18-bit)           ; 0           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 1           ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 1           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
 Encoding Type:  One-Hot
-+------------------------------------------------------------------------------------------+
-; State Machine - |axi_master_w|state_w                                                    ;
-+---------------+---------------+------------+--------------+--------------+---------------+
-; Name          ; state_w.WDATA ; state_w.AW ; state_w.WAIT ; state_w.IDLE ; state_w.BRESP ;
-+---------------+---------------+------------+--------------+--------------+---------------+
-; state_w.IDLE  ; 0             ; 0          ; 0            ; 0            ; 0             ;
-; state_w.WAIT  ; 0             ; 0          ; 1            ; 1            ; 0             ;
-; state_w.AW    ; 0             ; 1          ; 0            ; 1            ; 0             ;
-; state_w.WDATA ; 1             ; 0          ; 0            ; 1            ; 0             ;
-; state_w.BRESP ; 0             ; 0          ; 0            ; 1            ; 1             ;
-+---------------+---------------+------------+--------------+--------------+---------------+
++-------------------------------------------------------------+
+; State Machine - |axi_slave_r|state_r                        ;
++---------------+---------------+--------------+--------------+
+; Name          ; state_r.RDATA ; state_r.IDLE ; state_r.WAIT ;
++---------------+---------------+--------------+--------------+
+; state_r.IDLE  ; 0             ; 0            ; 0            ;
+; state_r.RDATA ; 1             ; 1            ; 0            ;
+; state_r.WAIT  ; 0             ; 1            ; 1            ;
++---------------+---------------+--------------+--------------+
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; ram_address[6]~reg0                   ; Stuck at GND due to stuck port data_in ;
-; ram_address[5]~reg0                   ; Stuck at GND due to stuck port data_in ;
-; state_w~4                             ; Lost fanout                            ;
-; state_w~5                             ; Lost fanout                            ;
-; Total Number of Removed Registers = 4 ;                                        ;
-+---------------------------------------+----------------------------------------+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; state_r~6                             ; Lost fanout        ;
+; Total Number of Removed Registers = 1 ;                    ;
++---------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -240,40 +265,91 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 68    ;
+; Total registers                              ; 38    ;
 ; Number of registers using Synchronous Clear  ; 8     ;
-; Number of registers using Synchronous Load   ; 5     ;
+; Number of registers using Synchronous Load   ; 7     ;
 ; Number of registers using Asynchronous Clear ; 18    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 63    ;
+; Number of registers using Clock Enable       ; 35    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |axi_master_w|burst_cnt_w[7] ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |axi_master_w|mem_ptr_w[0]   ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |axi_master_w|ShiftLeft1     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |axi_master_w|ShiftLeft3     ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |axi_master_w|ShiftLeft2     ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |axi_master_w|ShiftLeft2     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |axi_slave_r|burst_cnt_r[7] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
 
 
-+------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |axi_master_w ;
-+----------------+-------+-----------------------------------------------------+
-; Parameter Name ; Value ; Type                                                ;
-+----------------+-------+-----------------------------------------------------+
-; ID_WIDTH       ; 4     ; Signed Integer                                      ;
-; ADDR_WIDTH     ; 32    ; Signed Integer                                      ;
-; DATA_WIDTH     ; 32    ; Signed Integer                                      ;
-+----------------+-------+-----------------------------------------------------+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |axi_slave_r ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; ID_WIDTH       ; 4     ; Signed Integer                                     ;
+; ADDR_WIDTH     ; 32    ; Signed Integer                                     ;
+; DATA_WIDTH     ; 32    ; Signed Integer                                     ;
+; RAM_ADDR_WIDTH ; 7     ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0                   ;
++------------------------------------------------+------------+---------------------+
+; Parameter Name                                 ; Value      ; Type                ;
++------------------------------------------------+------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 7          ; Untyped             ;
+; LPM_WIDTHB                                     ; 7          ; Untyped             ;
+; LPM_WIDTHP                                     ; 14         ; Untyped             ;
+; LPM_WIDTHR                                     ; 14         ; Untyped             ;
+; LPM_WIDTHS                                     ; 1          ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0          ; Untyped             ;
+; LATENCY                                        ; 0          ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped             ;
+; USE_EAB                                        ; OFF        ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_k5t   ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped             ;
++------------------------------------------------+------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance         ;
++---------------------------------------+----------------+
+; Name                                  ; Value          ;
++---------------------------------------+----------------+
+; Number of entity instances            ; 1              ;
+; Entity Instance                       ; lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 7              ;
+;     -- LPM_WIDTHB                     ; 7              ;
+;     -- LPM_WIDTHP                     ; 14             ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED       ;
+;     -- INPUT_A_IS_CONSTANT            ; NO             ;
+;     -- INPUT_B_IS_CONSTANT            ; NO             ;
+;     -- USE_EAB                        ; OFF            ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO           ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx             ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx             ;
++---------------------------------------+----------------+
 
 
 +-------------------------------+
@@ -291,9 +367,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri May 08 17:59:30 2026
+    Info: Processing started: Sat May 09 00:04:34 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AXI4_Interconnect -c AXI4_Interconnect
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file axi_ram_mux.v
+    Info (12023): Found entity 1: axi_ram_mux
 Info (12021): Found 1 design units, including 1 entities, in source file sync_fifo.v
     Info (12023): Found entity 1: sync_fifo
 Info (12021): Found 1 design units, including 1 entities, in source file splitter.v
@@ -377,17 +455,37 @@ Info (12021): Found 1 design units, including 1 entities, in source file axi_sla
     Info (12023): Found entity 1: axi_slave_control
 Info (12021): Found 1 design units, including 1 entities, in source file axi_master_control.v
     Info (12023): Found entity 1: axi_master_control
-Info (12127): Elaborating entity "axi_master_w" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at axi_master_w.v(56): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at axi_master_w.v(63): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at axi_master_w.v(136): truncated value with size 8 to match size of target (5)
-Warning (10230): Verilog HDL assignment warning at axi_master_w.v(137): truncated value with size 32 to match size of target (8)
-Info (10264): Verilog HDL Case Statement information at axi_master_w.v(121): all case item expressions in this case statement are onehot
-Warning (10230): Verilog HDL assignment warning at axi_master_w.v(151): truncated value with size 32 to match size of target (4)
-Warning (10034): Output port "ram_data_in" at axi_master_w.v(23) has no driver
+Info (12021): Found 1 design units, including 1 entities, in source file ram_khai.v
+    Info (12023): Found entity 1: axi_ram_khai
+Warning (10236): Verilog HDL Implicit Net warning at axi_master_w.v(187): created implicit net for "w_request"
+Info (12127): Elaborating entity "axi_slave_r" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(47): object "saved_id_r" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(65): object "bytes_per_beat" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at axi_slave_r.v(66): object "offset" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(144): truncated value with size 32 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(161): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(162): truncated value with size 32 to match size of target (7)
+Info (10264): Verilog HDL Case Statement information at axi_slave_r.v(140): all case item expressions in this case statement are onehot
+Warning (10230): Verilog HDL assignment warning at axi_slave_r.v(193): truncated value with size 32 to match size of target (1)
+Warning (10034): Output port "ram_data_in" at axi_slave_r.v(16) has no driver
+Warning (10034): Output port "s_RID_o" at axi_slave_r.v(35) has no driver
+Warning (10034): Output port "s_RRESP_o" at axi_slave_r.v(37) has no driver
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0"
+Info (12130): Elaborated megafunction instantiation "lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "7"
+    Info (12134): Parameter "LPM_WIDTHB" = "7"
+    Info (12134): Parameter "LPM_WIDTHP" = "14"
+    Info (12134): Parameter "LPM_WIDTHR" = "14"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_k5t.tdf
+    Info (12023): Found entity 1: mult_k5t
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "ram_address[5]" is stuck at GND
-    Warning (13410): Pin "ram_address[6]" is stuck at GND
     Warning (13410): Pin "ram_data_in[0]" is stuck at GND
     Warning (13410): Pin "ram_data_in[1]" is stuck at GND
     Warning (13410): Pin "ram_data_in[2]" is stuck at GND
@@ -420,28 +518,55 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "ram_data_in[29]" is stuck at GND
     Warning (13410): Pin "ram_data_in[30]" is stuck at GND
     Warning (13410): Pin "ram_data_in[31]" is stuck at GND
-    Warning (13410): Pin "m_AWID_o[0]" is stuck at GND
-    Warning (13410): Pin "m_AWID_o[1]" is stuck at GND
-    Warning (13410): Pin "m_AWID_o[2]" is stuck at GND
-    Warning (13410): Pin "m_AWID_o[3]" is stuck at GND
-Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+    Warning (13410): Pin "ram_strobe[0]" is stuck at VCC
+    Warning (13410): Pin "s_RID_o[0]" is stuck at GND
+    Warning (13410): Pin "s_RID_o[1]" is stuck at GND
+    Warning (13410): Pin "s_RID_o[2]" is stuck at GND
+    Warning (13410): Pin "s_RID_o[3]" is stuck at GND
+    Warning (13410): Pin "s_RRESP_o[0]" is stuck at GND
+    Warning (13410): Pin "s_RRESP_o[1]" is stuck at GND
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file D:/DoAn_AXI4/AXI4_interconnect/output_files/AXI4_Interconnect.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 6 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "m_BID_i[0]"
-    Warning (15610): No output dependent on input pin "m_BID_i[1]"
-    Warning (15610): No output dependent on input pin "m_BID_i[2]"
-    Warning (15610): No output dependent on input pin "m_BID_i[3]"
-    Warning (15610): No output dependent on input pin "m_BRESP_i[0]"
-    Warning (15610): No output dependent on input pin "m_BRESP_i[1]"
-Info (21057): Implemented 319 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 95 input pins
-    Info (21059): Implemented 131 output pins
-    Info (21061): Implemented 93 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 53 warnings
-    Info: Peak virtual memory: 4631 megabytes
-    Info: Processing ended: Fri May 08 17:59:32 2026
+Warning (21074): Design contains 29 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "s_ARID_i[0]"
+    Warning (15610): No output dependent on input pin "s_ARID_i[1]"
+    Warning (15610): No output dependent on input pin "s_ARID_i[2]"
+    Warning (15610): No output dependent on input pin "s_ARID_i[3]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[7]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[8]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[9]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[10]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[11]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[12]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[13]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[14]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[15]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[16]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[17]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[18]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[19]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[20]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[21]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[22]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[23]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[24]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[25]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[26]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[27]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[28]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[29]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[30]"
+    Warning (15610): No output dependent on input pin "s_ARADDR_i[31]"
+Info (21057): Implemented 286 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 86 input pins
+    Info (21059): Implemented 87 output pins
+    Info (21061): Implemented 112 logic cells
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 82 warnings
+    Info: Peak virtual memory: 4633 megabytes
+    Info: Processing ended: Sat May 09 00:04:36 2026
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

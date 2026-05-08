@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="AXI4_Interconnect">
+		<CBX_INST_ENTRY INSTANCE_NAME="|axi_slave_r|lpm_mult:Mult0" CBX_FILE_NAME="mult_k5t.tdf"/>
 	</PROJECT>
 </LOG_ROOT>
